@@ -1,0 +1,225 @@
+<!-- Modern Hero Slider with RTL Support -->
+<section class="hero-slider" aria-label="{{ __('Featured content slider') }}">
+    <div class="slider-container" data-slider data-autoplay="true" data-interval="5000" data-loop="true">
+        
+        <!-- Slide 1: Welcome to Tawasaa -->
+        <div class="slider-slide" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <div class="slider-content">
+                <h1 class="slider-title">
+                    {% if app.getLocale() == 'ar' %}
+                        مرحباً بكم في منصة توسع
+                    {% else %}
+                        Welcome to Tawasaa Platform
+                    {% endif %}
+                </h1>
+                <p class="slider-description">
+                    {% if app.getLocale() == 'ar' %}
+                        اكتشف عالماً من المنتجات المميزة والعروض الحصرية. تسوق بثقة واستمتع بتجربة تسوق فريدة تناسب احتياجاتك.
+                    {% else %}
+                        Discover a world of premium products and exclusive offers. Shop with confidence and enjoy a unique shopping experience tailored to your needs.
+                    {% endif %}
+                </p>
+                <a href="{{ route('shop.home.index') }}" class="slider-cta">
+                    {% if app.getLocale() == 'ar' %}
+                        ابدأ التسوق الآن
+                    {% else %}
+                        Start Shopping Now
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        
+        <!-- Slide 2: Featured Products -->
+        <div class="slider-slide" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <div class="slider-content">
+                <h2 class="slider-title">
+                    {% if app.getLocale() == 'ar' %}
+                        منتجات مميزة بأسعار لا تُقاوم
+                    {% else %}
+                        Featured Products at Unbeatable Prices
+                    {% endif %}
+                </h2>
+                <p class="slider-description">
+                    {% if app.getLocale() == 'ar' %}
+                        استكشف مجموعتنا المختارة بعناية من أفضل المنتجات بأسعار تنافسية. جودة عالية وخدمة ممتازة في انتظارك.
+                    {% else %}
+                        Explore our carefully curated collection of the finest products at competitive prices. High quality and excellent service await you.
+                    {% endif %}
+                </p>
+                <a href="{{ route('shop.products.index') }}" class="slider-cta">
+                    {% if app.getLocale() == 'ar' %}
+                        تصفح المنتجات
+                    {% else %}
+                        Browse Products
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        
+        <!-- Slide 3: Special Offers -->
+        <div class="slider-slide" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <div class="slider-content">
+                <h2 class="slider-title">
+                    {% if app.getLocale() == 'ar' %}
+                        عروض خاصة وخصومات حصرية
+                    {% else %}
+                        Special Offers & Exclusive Discounts
+                    {% endif %}
+                </h2>
+                <p class="slider-description">
+                    {% if app.getLocale() == 'ar' %}
+                        لا تفوت فرصة الحصول على أفضل العروض والخصومات الحصرية. وفر أكثر واحصل على منتجات عالية الجودة بأسعار مذهلة.
+                    {% else %}
+                        Don't miss out on the best deals and exclusive discounts. Save more and get high-quality products at amazing prices.
+                    {% endif %}
+                </p>
+                <a href="{{ route('shop.offers.index') }}" class="slider-cta">
+                    {% if app.getLocale() == 'ar' %}
+                        اكتشف العروض
+                    {% else %}
+                        Discover Offers
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        
+        <!-- Slide 4: Customer Service -->
+        <div class="slider-slide" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+            <div class="slider-content">
+                <h2 class="slider-title">
+                    {% if app.getLocale() == 'ar' %}
+                        خدمة عملاء متميزة على مدار الساعة
+                    {% else %}
+                        Exceptional Customer Service 24/7
+                    {% endif %}
+                </h2>
+                <p class="slider-description">
+                    {% if app.getLocale() == 'ar' %}
+                        فريق خدمة العملاء لدينا متاح دائماً لمساعدتك. نحن نهتم بتجربتك ونسعى لتقديم أفضل خدمة ممكنة في جميع الأوقات.
+                    {% else %}
+                        Our customer service team is always available to help you. We care about your experience and strive to provide the best possible service at all times.
+                    {% endif %}
+                </p>
+                <a href="{{ route('shop.contact.index') }}" class="slider-cta">
+                    {% if app.getLocale() == 'ar' %}
+                        تواصل معنا
+                    {% else %}
+                        Contact Us
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        
+        <!-- Dynamic Slides from CMS -->
+        {% if homeContent is defined %}
+            {% for block in homeContent %}
+                {% if block.slug == 'hero_slider' and block.settings.slides is defined %}
+                    {% for slide in block.settings.slides %}
+                    <div class="slider-slide" {% if slide.background_image %}style="background-image: url('{{ slide.background_image }}'); background-size: cover; background-position: center;"{% endif %}>
+                        {% if slide.background_image %}
+                        <img src="{{ slide.background_image }}" alt="{{ slide.title }}" loading="lazy">
+                        {% endif %}
+                        <div class="slider-content">
+                            {% if slide.title %}
+                            <h2 class="slider-title">{{ slide.title }}</h2>
+                            {% endif %}
+                            {% if slide.description %}
+                            <p class="slider-description">{{ slide.description }}</p>
+                            {% endif %}
+                            {% if slide.cta_text and slide.cta_link %}
+                            <a href="{{ slide.cta_link }}" class="slider-cta">{{ slide.cta_text }}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</section>
+
+<!-- Slider Schema Markup for SEO -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "mainEntity": {
+        "@type": "ItemList",
+        "name": "{% if app.getLocale() == 'ar' %}العروض المميزة{% else %}Featured Offers{% endif %}",
+        "description": "{% if app.getLocale() == 'ar' %}اكتشف أحدث العروض والمنتجات المميزة{% else %}Discover the latest offers and featured products{% endif %}",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "Offer",
+                    "name": "{% if app.getLocale() == 'ar' %}مرحباً بكم في منصة توسع{% else %}Welcome to Tawasaa Platform{% endif %}",
+                    "description": "{% if app.getLocale() == 'ar' %}اكتشف عالماً من المنتجات المميزة والعروض الحصرية{% else %}Discover a world of premium products and exclusive offers{% endif %}",
+                    "url": "{{ route('shop.home.index') }}"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "Offer",
+                    "name": "{% if app.getLocale() == 'ar' %}منتجات مميزة بأسعار لا تُقاوم{% else %}Featured Products at Unbeatable Prices{% endif %}",
+                    "description": "{% if app.getLocale() == 'ar' %}استكشف مجموعتنا المختارة بعناية من أفضل المنتجات{% else %}Explore our carefully curated collection of the finest products{% endif %}",
+                    "url": "{{ route('shop.products.index') }}"
+                }
+            }
+        ]
+    }
+}
+</script>
+
+<!-- Preload critical slider images -->
+<link rel="preload" as="image" href="{{ asset('assets/images/slider-bg-1.jpg') }}">
+<link rel="preload" as="image" href="{{ asset('assets/images/slider-bg-2.jpg') }}">
+
+<style>
+/* Additional slider customizations */
+.hero-slider .slider-container {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+.hero-slider .slider-slide {
+    min-height: 500px;
+}
+
+@media (max-width: 768px) {
+    .hero-slider .slider-slide {
+        min-height: 350px;
+    }
+    
+    .hero-slider .slider-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-slider .slider-slide {
+        min-height: 300px;
+    }
+    
+    .hero-slider .slider-title {
+        font-size: 1.5rem;
+    }
+    
+    .hero-slider .slider-description {
+        font-size: 0.9rem;
+    }
+}
+
+/* RTL specific adjustments */
+html[dir="rtl"] .hero-slider .slider-content {
+    text-align: right;
+}
+
+html[dir="rtl"] .hero-slider .slider-title,
+html[dir="rtl"] .hero-slider .slider-description {
+    font-family: 'Cairo', 'Noto Sans Arabic', Arial, sans-serif;
+}
+</style>
+

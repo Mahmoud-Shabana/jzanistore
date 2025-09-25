@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tawasaa Arabic Theme - Test Page</title>
+    
+    <!-- Google Fonts for Arabic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="assets/css/rtl.css">
+    <link rel="stylesheet" href="assets/css/slider.css">
+    <link rel="stylesheet" href="assets/css/modern-ui.css">
+    
+    <style>
+        /* Icon mapping for testing */
+        .icon-truck::before { content: "\f0d1"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+        .icon-shield::before { content: "\f3ed"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+        .icon-headphones::before { content: "\f025"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+        .icon-refresh::before { content: "\f021"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+        .icon-heart::before { content: "\f004"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+        .icon-eye::before { content: "\f06e"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+        .icon-compare::before { content: "\f24d"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+        .icon-cart::before { content: "\f07a"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+        .icon-arrow-up::before { content: "\f062"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+        .icon-image::before { content: "\f03e"; font-family: "Font Awesome 6 Free"; font-weight: 900; }
+        
+        /* Test page specific styles */
+        body {
+            font-family: 'Cairo', 'Noto Sans Arabic', Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+        }
+        
+        .test-section {
+            margin: 3rem 0;
+            padding: 2rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .test-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .navbar-test {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 0;
+        }
+        
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-link {
+            color: #1f2937;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: #f3f4f6;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <!-- Test Navigation -->
+    <nav class="navbar-test">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="#" class="nav-brand">توسع</a>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link">الرئيسية</a></li>
+                    <li><a href="#" class="nav-link">المنتجات</a></li>
+                    <li><a href="#" class="nav-link">العروض</a></li>
+                    <li><a href="#" class="nav-link">تواصل معنا</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider Test -->
+    <section class="test-section">
+        <div class="container">
+            <h2 class="test-title">اختبار السلايدر الرئيسي</h2>
+            <div class="slider-container" data-slider data-autoplay="true" data-interval="3000">
+                <div class="slider-slide" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <div class="slider-content">
+                        <h1 class="slider-title">مرحباً بكم في منصة توسع</h1>
+                        <p class="slider-description">اكتشف عالماً من المنتجات المميزة والعروض الحصرية. تسوق بثقة واستمتع بتجربة تسوق فريدة تناسب احتياجاتك.</p>
+                        <a href="#" class="slider-cta">ابدأ التسوق الآن</a>
+                    </div>
+                </div>
+                
+                <div class="slider-slide" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <div class="slider-content">
+                        <h2 class="slider-title">منتجات مميزة بأسعار لا تُقاوم</h2>
+                        <p class="slider-description">استكشف مجموعتنا المختارة بعناية من أفضل المنتجات بأسعار تنافسية. جودة عالية وخدمة ممتازة في انتظارك.</p>
+                        <a href="#" class="slider-cta">تصفح المنتجات</a>
+                    </div>
+                </div>
+                
+                <div class="slider-slide" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <div class="slider-content">
+                        <h2 class="slider-title">عروض خاصة وخصومات حصرية</h2>
+                        <p class="slider-description">لا تفوت فرصة الحصول على أفضل العروض والخصومات الحصرية. وفر أكثر واحصل على منتجات عالية الجودة بأسعار مذهلة.</p>
+                        <a href="#" class="slider-cta">اكتشف العروض</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Test -->
+    <section class="test-section">
+        <div class="container">
+            <h2 class="test-title">اختبار المميزات</h2>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="feature-card text-center fade-in">
+                        <div class="feature-icon">
+                            <i class="icon-truck"></i>
+                        </div>
+                        <h3 class="feature-title">توصيل مجاني</h3>
+                        <p class="feature-description">توصيل مجاني للطلبات أكثر من 200 ريال</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="feature-card text-center fade-in">
+                        <div class="feature-icon">
+                            <i class="icon-shield"></i>
+                        </div>
+                        <h3 class="feature-title">دفع آمن</h3>
+                        <p class="feature-description">طرق دفع متعددة وآمنة 100%</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="feature-card text-center fade-in">
+                        <div class="feature-icon">
+                            <i class="icon-headphones"></i>
+                        </div>
+                        <h3 class="feature-title">دعم 24/7</h3>
+                        <p class="feature-description">خدمة عملاء متاحة على مدار الساعة</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="feature-card text-center fade-in">
+                        <div class="feature-icon">
+                            <i class="icon-refresh"></i>
+                        </div>
+                        <h3 class="feature-title">إرجاع مجاني</h3>
+                        <p class="feature-description">إرجاع مجاني خلال 30 يوم</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Cards Test -->
+    <section class="test-section">
+        <div class="container">
+            <h2 class="test-title">اختبار بطاقات المنتجات</h2>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="product-card fade-in">
+                        <div class="product-badge">-25%</div>
+                        <div class="product-actions">
+                            <button class="product-action-btn" title="أضف إلى المفضلة">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <button class="product-action-btn" title="عرض سريع">
+                                <i class="icon-eye"></i>
+                            </button>
+                            <button class="product-action-btn" title="مقارنة">
+                                <i class="icon-compare"></i>
+                            </button>
+                        </div>
+                        <div class="product-image">
+                            <div class="product-placeholder">
+                                <i class="icon-image"></i>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">
+                                <a href="#" class="category-link">إلكترونيات</a>
+                            </div>
+                            <h3 class="product-title">
+                                <a href="#" class="product-link">هاتف ذكي متطور</a>
+                            </h3>
+                            <div class="product-rating">
+                                <div class="product-stars">
+                                    <span class="product-star">★</span>
+                                    <span class="product-star">★</span>
+                                    <span class="product-star">★</span>
+                                    <span class="product-star">★</span>
+                                    <span class="product-star empty">★</span>
+                                </div>
+                                <span class="product-rating-text">(4.0) - 25 تقييم</span>
+                            </div>
+                            <p class="product-description">هاتف ذكي بمواصفات عالية وتقنيات متطورة لتجربة استخدام فريدة.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">1,200 ريال</span>
+                                <span class="product-price-old">1,600 ريال</span>
+                            </div>
+                            <div class="product-card-actions">
+                                <button class="btn btn-primary btn-add-to-cart">
+                                    <i class="icon-cart"></i>
+                                    أضف للسلة
+                                </button>
+                                <button class="btn btn-outline btn-buy-now">
+                                    اشتر الآن
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="product-card fade-in">
+                        <div class="product-badge" style="background: var(--success-color);">جديد</div>
+                        <div class="product-actions">
+                            <button class="product-action-btn" title="أضف إلى المفضلة">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <button class="product-action-btn" title="عرض سريع">
+                                <i class="icon-eye"></i>
+                            </button>
+                            <button class="product-action-btn" title="مقارنة">
+                                <i class="icon-compare"></i>
+                            </button>
+                        </div>
+                        <div class="product-image">
+                            <div class="product-placeholder">
+                                <i class="icon-image"></i>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">
+                                <a href="#" class="category-link">أزياء</a>
+                            </div>
+                            <h3 class="product-title">
+                                <a href="#" class="product-link">قميص قطني فاخر</a>
+                            </h3>
+                            <div class="product-rating">
+                                <div class="product-stars">
+                                    <span class="product-star">★</span>
+                                    <span class="product-star">★</span>
+                                    <span class="product-star">★</span>
+                                    <span class="product-star">★</span>
+                                    <span class="product-star">★</span>
+                                </div>
+                                <span class="product-rating-text">(5.0) - 15 تقييم</span>
+                            </div>
+                            <p class="product-description">قميص من القطن الفاخر بتصميم عصري ومريح للاستخدام اليومي.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">150 ريال</span>
+                            </div>
+                            <div class="product-card-actions">
+                                <button class="btn btn-primary btn-add-to-cart">
+                                    <i class="icon-cart"></i>
+                                    أضف للسلة
+                                </button>
+                                <button class="btn btn-outline btn-buy-now">
+                                    اشتر الآن
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="product-card fade-in">
+                        <div class="product-actions">
+                            <button class="product-action-btn" title="أضف إلى المفضلة">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <button class="product-action-btn" title="عرض سريع">
+                                <i class="icon-eye"></i>
+                            </button>
+                            <button class="product-action-btn" title="مقارنة">
+                                <i class="icon-compare"></i>
+                            </button>
+                        </div>
+                        <div class="product-image">
+                            <div class="product-placeholder">
+                                <i class="icon-image"></i>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">
+                                <a href="#" class="category-link">منزل وحديقة</a>
+                            </div>
+                            <h3 class="product-title">
+                                <a href="#" class="product-link">مصباح LED ذكي</a>
+                            </h3>
+                            <div class="product-rating">
+                                <div class="product-stars">
+                                    <span class="product-star">★</span>
+                                    <span class="product-star">★</span>
+                                    <span class="product-star">★</span>
+                                    <span class="product-star">★</span>
+                                    <span class="product-star empty">★</span>
+                                </div>
+                                <span class="product-rating-text">(4.2) - 8 تقييم</span>
+                            </div>
+                            <p class="product-description">مصباح LED ذكي قابل للتحكم عن بُعد مع إضاءة متغيرة الألوان.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">89 ريال</span>
+                            </div>
+                            <div class="product-card-actions">
+                                <button class="btn btn-primary btn-add-to-cart">
+                                    <i class="icon-cart"></i>
+                                    أضف للسلة
+                                </button>
+                                <button class="btn btn-outline btn-buy-now">
+                                    اشتر الآن
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="product-card fade-in">
+                        <div class="product-actions">
+                            <button class="product-action-btn" title="أضف إلى المفضلة">
+                                <i class="icon-heart"></i>
+                            </button>
+                            <button class="product-action-btn" title="عرض سريع">
+                                <i class="icon-eye"></i>
+                            </button>
+                            <button class="product-action-btn" title="مقارنة">
+                                <i class="icon-compare"></i>
+                            </button>
+                        </div>
+                        <div class="product-image">
+                            <div class="product-placeholder">
+                                <i class="icon-image"></i>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-category">
+                                <a href="#" class="category-link">كتب</a>
+                            </div>
+                            <h3 class="product-title">
+                                <a href="#" class="product-link">كتاب تطوير الذات</a>
+                            </h3>
+                            <div class="product-rating">
+                                <div class="product-stars">
+                                    <span class="product-star">★</span>
+                                    <span class="product-star">★</span>
+                                    <span class="product-star">★</span>
+                                    <span class="product-star">★</span>
+                                    <span class="product-star">★</span>
+                                </div>
+                                <span class="product-rating-text">(4.8) - 42 تقييم</span>
+                            </div>
+                            <p class="product-description">دليل شامل لتطوير الذات وتحقيق النجاح في الحياة المهنية والشخصية.</p>
+                            <div class="product-price">
+                                <span class="product-price-current">45 ريال</span>
+                            </div>
+                            <div class="product-card-actions">
+                                <button class="btn btn-outline" disabled>
+                                    غير متوفر
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Test -->
+    <section class="test-section">
+        <div class="container">
+            <h2 class="test-title">اختبار النماذج</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form class="fade-in">
+                        <div class="form-group">
+                            <label for="name" class="form-label">الاسم الكامل</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">البريد الإلكتروني</label>
+                            <div class="input-group">
+                                <i class="input-group-icon fas fa-envelope"></i>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">الرسالة</label>
+                            <textarea class="form-control" id="message" rows="4" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">إرسال الرسالة</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Test -->
+    <section class="test-section">
+        <div class="container">
+            <h2 class="test-title">اختبار البحث</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="search-box fade-in">
+                        <input type="text" class="search-input" placeholder="ابحث عن المنتجات...">
+                        <button class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="العودة للأعلى">
+        <i class="icon-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/slider.js"></script>
+    <script src="assets/js/modern-ui.js"></script>
+    
+    <script>
+        // Global configuration for testing
+        window.AppConfig = {
+            locale: 'ar',
+            isRTL: true,
+            baseUrl: '',
+            assetUrl: '',
+            csrfToken: '',
+            translations: {
+                loading: 'جاري التحميل...',
+                error: 'حدث خطأ',
+                success: 'تم بنجاح',
+                confirm: 'هل أنت متأكد؟',
+                cancel: 'إلغاء',
+                ok: 'موافق',
+                close: 'إغلاق',
+                next: 'التالي',
+                previous: 'السابق',
+                addToCart: 'أضف للسلة',
+                buyNow: 'اشتر الآن',
+                viewDetails: 'عرض التفاصيل'
+            }
+        };
+
+        // Test functions for product cards
+        function addToCart(productId) {
+            if (window.ModernUI) {
+                window.ModernUI.showToast('تم إضافة المنتج إلى السلة', 'success');
+            }
+        }
+
+        function buyNow(productId) {
+            if (window.ModernUI) {
+                window.ModernUI.showToast('جاري التوجه لصفحة الدفع...', 'success');
+            }
+        }
+
+        function addToWishlist(productId) {
+            if (window.ModernUI) {
+                window.ModernUI.showToast('تم إضافة المنتج إلى المفضلة', 'success');
+            }
+        }
+
+        function quickView(productId) {
+            if (window.ModernUI) {
+                window.ModernUI.showToast('عرض سريع للمنتج', 'success');
+            }
+        }
+
+        function compareProduct(productId) {
+            if (window.ModernUI) {
+                window.ModernUI.showToast('تم إضافة المنتج للمقارنة', 'success');
+            }
+        }
+
+        // Test form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    if (window.ModernUI) {
+                        window.ModernUI.showToast('تم إرسال الرسالة بنجاح', 'success');
+                    }
+                });
+            }
+
+            // Test search
+            const searchBtn = document.querySelector('.search-btn');
+            if (searchBtn) {
+                searchBtn.addEventListener('click', function() {
+                    const searchInput = document.querySelector('.search-input');
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        if (window.ModernUI) {
+                            window.ModernUI.showToast(`البحث عن: ${query}`, 'success');
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

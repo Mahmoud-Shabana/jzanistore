@@ -1,0 +1,407 @@
+<!-- Enhanced Product Card with Modern UI Features -->
+<div class="product-card fade-in" itemscope itemtype="https://schema.org/Product">
+    <!-- Product Badge -->
+    {% if product.discount_percentage %}
+        <div class="product-badge">
+            -{{ product.discount_percentage }}%
+        </div>
+    {% elseif product.is_new %}
+        <div class="product-badge" style="background: var(--success-color);">
+            {% if app.getLocale() == 'ar' %}جديد{% else %}New{% endif %}
+        </div>
+    {% endif %}
+
+    <!-- Product Actions -->
+    <div class="product-actions">
+        <button class="product-action-btn" 
+                onclick="addToWishlist({{ product.id }})" 
+                title="{% if app.getLocale() == 'ar' %}أضف إلى المفضلة{% else %}Add to Wishlist{% endif %}"
+                aria-label="{% if app.getLocale() == 'ar' %}أضف إلى المفضلة{% else %}Add to Wishlist{% endif %}">
+            <i class="icon-heart"></i>
+        </button>
+        
+        <button class="product-action-btn" 
+                onclick="quickView({{ product.id }})" 
+                title="{% if app.getLocale() == 'ar' %}عرض سريع{% else %}Quick View{% endif %}"
+                aria-label="{% if app.getLocale() == 'ar' %}عرض سريع{% else %}Quick View{% endif %}">
+            <i class="icon-eye"></i>
+        </button>
+        
+        <button class="product-action-btn" 
+                onclick="compareProduct({{ product.id }})" 
+                title="{% if app.getLocale() == 'ar' %}مقارنة{% else %}Compare{% endif %}"
+                aria-label="{% if app.getLocale() == 'ar' %}مقارنة{% else %}Compare{% endif %}">
+            <i class="icon-compare"></i>
+        </button>
+    </div>
+
+    <!-- Product Image -->
+    <div class="product-image">
+        <a href="{{ product.url_key ? '/' ~ product.url_key : '#' }}" class="product-link">
+            {% if product.product.base_image_url %}
+                <img src="{{ product.product.base_image_url }}" 
+                     alt="{{ product.name }}" 
+                     loading="lazy"
+                     itemprop="image">
+            {% else %}
+                <div class="product-placeholder">
+                    <i class="icon-image"></i>
+                </div>
+            {% endif %}
+        </a>
+        
+        <!-- Hover Image (if available) -->
+        {% if product.product.hover_image_url %}
+            <img src="{{ product.product.hover_image_url }}" 
+                 alt="{{ product.name }}" 
+                 class="product-hover-image"
+                 loading="lazy">
+        {% endif %}
+    </div>
+
+    <!-- Product Content -->
+    <div class="product-content">
+        <!-- Product Category -->
+        {% if product.category %}
+            <div class="product-category">
+                <a href="{{ product.category.url }}" class="category-link">
+                    {{ product.category.name }}
+                </a>
+            </div>
+        {% endif %}
+
+        <!-- Product Title -->
+        <h3 class="product-title" itemprop="name">
+            <a href="{{ product.url_key ? '/' ~ product.url_key : '#' }}" class="product-link">
+                {{ product.name }}
+            </a>
+        </h3>
+
+        <!-- Product Rating -->
+        {% if product.rating %}
+            <div class="product-rating" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+                <div class="product-stars">
+                    {% for i in 1..5 %}
+                        <span class="product-star {{ i <= product.rating ? '' : 'empty' }}">★</span>
+                    {% endfor %}
+                </div>
+                <span class="product-rating-text">
+                    (<span itemprop="ratingValue">{{ product.rating }}</span>)
+                    {% if product.review_count %}
+                        - {{ product.review_count }} 
+                        {% if app.getLocale() == 'ar' %}تقييم{% else %}reviews{% endif %}
+                    {% endif %}
+                </span>
+                <meta itemprop="bestRating" content="5">
+                <meta itemprop="reviewCount" content="{{ product.review_count|default(0) }}">
+            </div>
+        {% endif %}
+
+        <!-- Product Description (Short) -->
+        {% if product.short_description %}
+            <p class="product-description" itemprop="description">
+                {{ product.short_description|slice(0, 100) }}{% if product.short_description|length > 100 %}...{% endif %}
+            </p>
+        {% endif %}
+
+        <!-- Product Price -->
+        <div class="product-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            {% if product.html_price %}
+                {{ product.html_price|raw }}
+            {% else %}
+                <span class="product-price-current" itemprop="price">
+                    {{ product.price|default('0.00') }}
+                </span>
+                {% if product.old_price and product.old_price != product.price %}
+                    <span class="product-price-old">
+                        {{ product.old_price }}
+                    </span>
+                {% endif %}
+            {% endif %}
+            <meta itemprop="priceCurrency" content="SAR">
+            <meta itemprop="availability" content="{% if product.saleable %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}">
+        </div>
+
+        <!-- Product Attributes (if any) -->
+        {% if product.attributes %}
+            <div class="product-attributes">
+                {% for attribute in product.attributes|slice(0, 2) %}
+                    <span class="product-attribute">
+                        <strong>{{ attribute.name }}:</strong> {{ attribute.value }}
+                    </span>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Product Actions -->
+        <div class="product-card-actions">
+            {% if product.saleable %}
+                <button class="btn btn-primary btn-add-to-cart" 
+                        onclick="addToCart({{ product.id }})"
+                        data-product-id="{{ product.id }}">
+                    <i class="icon-cart"></i>
+                    {% if app.getLocale() == 'ar' %}
+                        أضف للسلة
+                    {% else %}
+                        Add to Cart
+                    {% endif %}
+                </button>
+            {% else %}
+                <button class="btn btn-outline" disabled>
+                    {% if app.getLocale() == 'ar' %}
+                        غير متوفر
+                    {% else %}
+                        Out of Stock
+                    {% endif %}
+                </button>
+            {% endif %}
+            
+            <button class="btn btn-outline btn-buy-now" 
+                    onclick="buyNow({{ product.id }})"
+                    data-product-id="{{ product.id }}">
+                {% if app.getLocale() == 'ar' %}
+                    اشتر الآن
+                {% else %}
+                    Buy Now
+                {% endif %}
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay for Actions -->
+    <div class="product-loading" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+</div>
+
+<style>
+/* Product Card Specific Styles */
+.product-card {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    transform: translateY(-8px);
+}
+
+.product-placeholder {
+    width: 100%;
+    height: 250px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 2rem;
+}
+
+.product-hover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-card:hover .product-hover-image {
+    opacity: 1;
+}
+
+.product-category {
+    margin-bottom: 0.5rem;
+}
+
+.category-link {
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.category-link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.product-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.product-link:hover {
+    color: var(--primary-color);
+}
+
+.product-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.product-attributes {
+    margin-bottom: 1rem;
+}
+
+.product-attribute {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.product-card-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+.btn-add-to-cart {
+    flex: 1;
+}
+
+.btn-buy-now {
+    flex: 1;
+}
+
+.product-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+/* RTL Adjustments */
+html[dir="rtl"] .product-title,
+html[dir="rtl"] .product-description,
+html[dir="rtl"] .category-link,
+html[dir="rtl"] .product-attribute {
+    font-family: 'Cairo', 'Noto Sans Arabic', Arial, sans-serif;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-card-actions {
+        flex-direction: column;
+    }
+    
+    .product-actions {
+        position: static;
+        opacity: 1;
+        transform: none;
+        flex-direction: row;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .product-action-btn {
+        position: static;
+    }
+}
+</style>
+
+<script>
+// Product Card JavaScript Functions
+function addToCart(productId) {
+    const button = document.querySelector(`[data-product-id="${productId}"].btn-add-to-cart`);
+    const card = button.closest('.product-card');
+    const loading = card.querySelector('.product-loading');
+    
+    // Show loading
+    loading.style.display = 'flex';
+    
+    // Simulate API call
+    setTimeout(() => {
+        loading.style.display = 'none';
+        
+        if (window.ModernUI) {
+            window.ModernUI.showToast(
+                window.AppConfig.locale === 'ar' ? 'تم إضافة المنتج إلى السلة' : 'Product added to cart',
+                'success'
+            );
+        }
+        
+        // Update cart count if exists
+        updateCartCount();
+    }, 1000);
+}
+
+function buyNow(productId) {
+    const button = document.querySelector(`[data-product-id="${productId}"].btn-buy-now`);
+    
+    if (window.ModernUI) {
+        window.ModernUI.setButtonLoading(button, true);
+    }
+    
+    // Simulate redirect to checkout
+    setTimeout(() => {
+        window.location.href = `/checkout?product=${productId}`;
+    }, 1000);
+}
+
+function addToWishlist(productId) {
+    // Simulate API call
+    if (window.ModernUI) {
+        window.ModernUI.showToast(
+            window.AppConfig.locale === 'ar' ? 'تم إضافة المنتج إلى المفضلة' : 'Product added to wishlist',
+            'success'
+        );
+    }
+}
+
+function quickView(productId) {
+    // Open quick view modal
+    console.log('Quick view for product:', productId);
+}
+
+function compareProduct(productId) {
+    // Add to comparison
+    if (window.ModernUI) {
+        window.ModernUI.showToast(
+            window.AppConfig.locale === 'ar' ? 'تم إضافة المنتج للمقارنة' : 'Product added to comparison',
+            'success'
+        );
+    }
+}
+
+function updateCartCount() {
+    // Update cart count in header
+    const cartCount = document.querySelector('.cart-count');
+    if (cartCount) {
+        const currentCount = parseInt(cartCount.textContent) || 0;
+        cartCount.textContent = currentCount + 1;
+        
+        // Animate cart icon
+        const cartIcon = document.querySelector('.cart-icon');
+        if (cartIcon) {
+            cartIcon.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                cartIcon.style.transform = '';
+            }, 200);
+        }
+    }
+}
+</script>
+

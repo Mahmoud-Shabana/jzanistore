@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="{{ app.getLocale() }}" dir="{{ app.getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>{% block title %}{{ 'Tawasaa - منصة توسع' }}{% endblock %}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% block description %}منصة توسع للتجارة الإلكترونية - Tawasaa E-commerce Platform{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}تجارة إلكترونية, توسع, منتجات, تسوق, ecommerce, tawasaa{% endblock %}">
+    <meta name="author" content="Tawasaa">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{% block og_title %}{{ block('title') }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ block('description') }}{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ app.request.uri }}">
+    <meta property="og:image" content="{% block og_image %}{{ asset('assets/images/og-image.jpg') }}{% endblock %}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('assets/images/apple-touch-icon.png') }}">
+    
+    <!-- Google Fonts for Arabic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slider.css') }}">
+    
+    <!-- RTL CSS for Arabic -->
+    {% if app.getLocale() == 'ar' %}
+    <link rel="stylesheet" href="{{ asset('assets/css/rtl.css') }}">
+    {% endif %}
+    
+    <!-- Custom CSS -->
+    {% block styles %}{% endblock %}
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Tawasaa",
+        "alternateName": "توسع",
+        "url": "{{ app.request.schemeAndHttpHost }}",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "{{ route('shop.search.index') }}?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+</head>
+
+<body class="{{ app.getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">{{ __('Skip to main content') }}</a>
+    
+    <!-- Header -->
+    <header class="header" role="banner">
+        {% include 'layout/header.twig' %}
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="{{ __('Main navigation') }}">
+        {% include 'layout/navigation.twig' %}
+    </nav>
+    
+    <!-- Breadcrumbs -->
+    {% block breadcrumbs %}
+        {% if breadcrumbs is defined and breadcrumbs|length > 0 %}
+        <nav class="breadcrumbs" aria-label="{{ __('Breadcrumb navigation') }}">
+            <div class="container">
+                <ol class="breadcrumb">
+                    {% for breadcrumb in breadcrumbs %}
+                    <li class="breadcrumb-item{{ loop.last ? ' active' : '' }}"{{ loop.last ? ' aria-current="page"' : '' }}>
+                        {% if not loop.last and breadcrumb.url %}
+                        <a href="{{ breadcrumb.url }}">{{ breadcrumb.name }}</a>
+                        {% else %}
+                        {{ breadcrumb.name }}
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </nav>
+        {% endif %}
+    {% endblock %}
+    
+    <!-- Main Content -->
+    <main id="main-content" class="main-content" role="main">
+        <!-- Flash Messages -->
+        {% if flash_messages is defined %}
+            {% for type, messages in flash_messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ type }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ __('Close') }}"></button>
+                </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+        
+        <!-- Page Content -->
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        {% include 'layout/footer.twig' %}
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="{{ __('Back to top') }}" title="{{ __('Back to top') }}">
+        <i class="icon-arrow-up"></i>
+    </button>
+    
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>{{ __('Loading...') }}</p>
+        </div>
+    </div>
+    
+    <!-- JavaScript Files -->
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slider.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    
+    <!-- Custom JavaScript -->
+    {% block scripts %}{% endblock %}
+    
+    <!-- Global JavaScript Variables -->
+    <script>
+        window.AppConfig = {
+            locale: '{{ app.getLocale() }}',
+            isRTL: {{ app.getLocale() == 'ar' ? 'true' : 'false' }},
+            baseUrl: '{{ app.request.schemeAndHttpHost }}',
+            assetUrl: '{{ asset('') }}',
+            csrfToken: '{{ csrf_token() }}',
+            translations: {
+                loading: '{{ __("Loading...") }}',
+                error: '{{ __("An error occurred") }}',
+                success: '{{ __("Success") }}',
+                confirm: '{{ __("Are you sure?") }}',
+                cancel: '{{ __("Cancel") }}',
+                ok: '{{ __("OK") }}',
+                close: '{{ __("Close") }}',
+                next: '{{ __("Next") }}',
+                previous: '{{ __("Previous") }}',
+                addToCart: '{{ __("Add to Cart") }}',
+                buyNow: '{{ __("Buy Now") }}',
+                viewDetails: '{{ __("View Details") }}'
+            }
+        };
+    </script>
+    
+    <!-- Analytics -->
+    {% block analytics %}
+        <!-- Add your analytics code here -->
+    {% endblock %}
+    
+    <!-- Cookie Consent -->
+    <div id="cookie-consent" class="cookie-consent" style="display: none;">
+        <div class="cookie-content">
+            <p>{{ __('This website uses cookies to ensure you get the best experience on our website.') }}</p>
+            <div class="cookie-actions">
+                <button id="accept-cookies" class="btn btn-primary">{{ __('Accept') }}</button>
+                <button id="decline-cookies" class="btn btn-secondary">{{ __('Decline') }}</button>
+                <a href="{{ route('privacy-policy') }}" class="cookie-link">{{ __('Privacy Policy') }}</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Accessibility Features -->
+    <div class="accessibility-toolbar" id="accessibility-toolbar">
+        <button class="accessibility-toggle" id="accessibility-toggle" aria-label="{{ __('Accessibility options') }}">
+            <i class="icon-accessibility"></i>
+        </button>
+        <div class="accessibility-options" id="accessibility-options" style="display: none;">
+            <button class="accessibility-option" id="increase-font" aria-label="{{ __('Increase font size') }}">
+                <i class="icon-plus"></i> {{ __('Font Size') }}
+            </button>
+            <button class="accessibility-option" id="high-contrast" aria-label="{{ __('Toggle high contrast') }}">
+                <i class="icon-contrast"></i> {{ __('High Contrast') }}
+            </button>
+            <button class="accessibility-option" id="focus-outline" aria-label="{{ __('Toggle focus outline') }}">
+                <i class="icon-focus"></i> {{ __('Focus Outline') }}
+            </button>
+        </div>
+    </div>
+</body>
+</html>
+
