@@ -1,0 +1,334 @@
+/* RTL Support for Arabic Theme */
+
+/* Base RTL Configuration */
+html[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+}
+
+html[dir="rtl"] body {
+    direction: rtl;
+    text-align: right;
+    font-family: 'Noto Sans Arabic', 'Cairo', 'Amiri', Arial, sans-serif;
+}
+
+/* Layout Mirroring */
+html[dir="rtl"] .container {
+    direction: rtl;
+}
+
+html[dir="rtl"] .row {
+    direction: rtl;
+}
+
+/* Navigation RTL */
+html[dir="rtl"] .navbar {
+    direction: rtl;
+}
+
+html[dir="rtl"] .navbar-brand {
+    float: right;
+    margin-right: 0;
+    margin-left: 15px;
+}
+
+html[dir="rtl"] .navbar-nav {
+    float: right;
+}
+
+html[dir="rtl"] .navbar-nav > li {
+    float: right;
+}
+
+html[dir="rtl"] .dropdown-menu {
+    right: 0;
+    left: auto;
+    text-align: right;
+}
+
+/* Header RTL */
+html[dir="rtl"] .header {
+    direction: rtl;
+}
+
+html[dir="rtl"] .logo {
+    float: right;
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+html[dir="rtl"] .header-actions {
+    float: left;
+}
+
+html[dir="rtl"] .search-box {
+    direction: rtl;
+    text-align: right;
+}
+
+html[dir="rtl"] .search-box input {
+    text-align: right;
+    padding-right: 40px;
+    padding-left: 15px;
+}
+
+html[dir="rtl"] .search-box .search-icon {
+    right: auto;
+    left: 10px;
+}
+
+/* Sidebar RTL */
+html[dir="rtl"] .sidebar {
+    float: right;
+    border-right: none;
+    border-left: 1px solid #e0e0e0;
+}
+
+html[dir="rtl"] .sidebar ul li {
+    text-align: right;
+}
+
+html[dir="rtl"] .sidebar ul li a {
+    padding-right: 0;
+    padding-left: 15px;
+}
+
+/* Main Content RTL */
+html[dir="rtl"] .main-content {
+    float: left;
+    padding-right: 0;
+    padding-left: 30px;
+}
+
+/* Product Grid RTL */
+html[dir="rtl"] .product-grid {
+    direction: rtl;
+}
+
+html[dir="rtl"] .product-item {
+    text-align: right;
+}
+
+html[dir="rtl"] .product-price {
+    text-align: right;
+}
+
+html[dir="rtl"] .product-actions {
+    text-align: right;
+}
+
+/* Forms RTL */
+html[dir="rtl"] .form-group {
+    text-align: right;
+}
+
+html[dir="rtl"] .form-control {
+    text-align: right;
+}
+
+html[dir="rtl"] .form-label {
+    text-align: right;
+    float: right;
+}
+
+html[dir="rtl"] .checkbox,
+html[dir="rtl"] .radio {
+    text-align: right;
+}
+
+html[dir="rtl"] .checkbox input[type="checkbox"],
+html[dir="rtl"] .radio input[type="radio"] {
+    float: right;
+    margin-right: 0;
+    margin-left: 5px;
+}
+
+/* Buttons RTL */
+html[dir="rtl"] .btn-group {
+    direction: rtl;
+}
+
+html[dir="rtl"] .btn-group > .btn:first-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+html[dir="rtl"] .btn-group > .btn:last-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* Tables RTL */
+html[dir="rtl"] .table {
+    direction: rtl;
+}
+
+html[dir="rtl"] .table th,
+html[dir="rtl"] .table td {
+    text-align: right;
+}
+
+/* Breadcrumbs RTL */
+html[dir="rtl"] .breadcrumb {
+    direction: rtl;
+}
+
+html[dir="rtl"] .breadcrumb > li + li:before {
+    content: "\\";
+    padding: 0 5px;
+    color: #ccc;
+}
+
+/* Pagination RTL */
+html[dir="rtl"] .pagination {
+    direction: rtl;
+}
+
+html[dir="rtl"] .pagination > li:first-child > a,
+html[dir="rtl"] .pagination > li:first-child > span {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+html[dir="rtl"] .pagination > li:last-child > a,
+html[dir="rtl"] .pagination > li:last-child > span {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* Modal RTL */
+html[dir="rtl"] .modal-header {
+    text-align: right;
+}
+
+html[dir="rtl"] .modal-body {
+    text-align: right;
+}
+
+html[dir="rtl"] .modal-footer {
+    text-align: left;
+}
+
+html[dir="rtl"] .close {
+    float: left;
+}
+
+/* Alerts RTL */
+html[dir="rtl"] .alert {
+    text-align: right;
+}
+
+html[dir="rtl"] .alert-dismissible .close {
+    right: auto;
+    left: -21px;
+}
+
+/* Icons RTL - Only mirror directional icons */
+html[dir="rtl"] .icon-arrow-left:before {
+    content: "\\e916"; /* arrow-right */
+}
+
+html[dir="rtl"] .icon-arrow-right:before {
+    content: "\\e915"; /* arrow-left */
+}
+
+html[dir="rtl"] .icon-chevron-left:before {
+    content: "\\e918"; /* chevron-right */
+}
+
+html[dir="rtl"] .icon-chevron-right:before {
+    content: "\\e917"; /* chevron-left */
+}
+
+/* Slider/Carousel RTL */
+html[dir="rtl"] .slider-container {
+    direction: rtl;
+}
+
+html[dir="rtl"] .slider-nav {
+    direction: rtl;
+}
+
+html[dir="rtl"] .slider-prev {
+    right: 10px;
+    left: auto;
+}
+
+html[dir="rtl"] .slider-next {
+    left: 10px;
+    right: auto;
+}
+
+/* Footer RTL */
+html[dir="rtl"] .footer {
+    direction: rtl;
+    text-align: right;
+}
+
+html[dir="rtl"] .footer-links {
+    text-align: right;
+}
+
+html[dir="rtl"] .footer-social {
+    float: left;
+}
+
+/* Responsive RTL Adjustments */
+@media (max-width: 768px) {
+    html[dir="rtl"] .navbar-brand {
+        float: none;
+        margin: 0;
+    }
+    
+    html[dir="rtl"] .navbar-nav {
+        float: none;
+    }
+    
+    html[dir="rtl"] .sidebar {
+        float: none;
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid #e0e0e0;
+    }
+    
+    html[dir="rtl"] .main-content {
+        float: none;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+/* Arabic Typography Enhancements */
+html[dir="rtl"] h1, 
+html[dir="rtl"] h2, 
+html[dir="rtl"] h3, 
+html[dir="rtl"] h4, 
+html[dir="rtl"] h5, 
+html[dir="rtl"] h6 {
+    font-family: 'Cairo', 'Noto Sans Arabic', Arial, sans-serif;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+html[dir="rtl"] p,
+html[dir="rtl"] span,
+html[dir="rtl"] div {
+    font-family: 'Noto Sans Arabic', 'Cairo', Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Ensure proper text rendering for Arabic */
+html[dir="rtl"] * {
+    -webkit-font-feature-settings: "liga" 1, "calt" 1;
+    -moz-font-feature-settings: "liga" 1, "calt" 1;
+    font-feature-settings: "liga" 1, "calt" 1;
+}
+
